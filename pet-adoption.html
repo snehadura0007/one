@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PawsHome – Find Your Forever Friend</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Paws<span>Home</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <i class="bi bi-list text-white fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#adopt">Adopt</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#fosterModal">Foster</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#donateModal">Donate</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a></li>
+        <li class="nav-item ms-lg-2"><a class="nav-link btn-adopt-nav" href="#adopt">Start Adoption</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <p class="hero-eyebrow fade-up">🐾 Over 2,400 pets rehomed</p>
+        <h1 class="fade-up delay-1">Every pet deserves a<br><em>forever home.</em></h1>
+        <p class="fade-up delay-2">Browse dogs, cats, rabbits, birds and more. Our adoption counselors match you with a companion who fits your lifestyle.</p>
+        <div class="search-wrap fade-up delay-3">
+          <i class="bi bi-search text-secondary"></i>
+          <input type="text" id="searchInput" placeholder="Search by name, breed, or type…" autocomplete="off"/>
+          <button class="btn-search" onclick="handleSearch()"><i class="bi bi-sliders me-1"></i>Find Pets</button>
+        </div>
+        <div class="hero-stats fade-up delay-3">
+          <div class="hero-stat"><div class="num">847</div><div class="lbl">Pets Available</div></div>
+          <div class="hero-stat"><div class="num">98%</div><div class="lbl">Happy Homes</div></div>
+          <div class="hero-stat"><div class="num">24h</div><div class="lbl">Support</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-paw">🐾</div>
+</section>
+
+<!-- ══ FILTER + CARDS ══ -->
+<section class="filter-section" id="adopt">
+  <div class="container">
+    <h2>Meet your match</h2>
+    <p>Filter by type to find the right companion for you.</p>
+    <div class="filter-pills" id="filterPills">
+      <div class="pill active" data-filter="all" onclick="filterPets(this)">🐾 All Pets</div>
+      <div class="pill" data-filter="dog"   onclick="filterPets(this)">🐶 Dogs</div>
+      <div class="pill" data-filter="cat"   onclick="filterPets(this)">🐱 Cats</div>
+      <div class="pill" data-filter="rabbit" onclick="filterPets(this)">🐰 Rabbits</div>
+      <div class="pill" data-filter="bird"  onclick="filterPets(this)">🦜 Birds</div>
+      <div class="pill" data-filter="small" onclick="filterPets(this)">🐹 Small Pets</div>
+    </div>
+  </div>
+</section>
+
+<section class="pets-section">
+  <div class="container">
+    <div class="row g-4" id="petGrid"></div>
+    <div id="no-results">
+      <i class="bi bi-search d-block"></i>
+      <h5>No pets found</h5>
+      <p>Try a different search or filter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="process-section">
+  <div class="container">
+    <h2>How adoption works</h2>
+    <p class="sub">Simple, transparent, and guided every step of the way.</p>
+    <div class="row g-0 align-items-start">
+      <div class="col-md-3"><div class="step">
+        <div class="step-icon"><i class="bi bi-search-heart"></i></div>
+        <h3>Browse & Match</h3>
+        <p>Use filters to find a pet whose personality and needs align with your lifestyle.</p>
+      </div></div>
+      <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center" style="padding-top:32px">
+        <i class="bi bi-arrow-right text-secondary opacity-50 fs-4"></i>
+      </div>
+      <div class="col-md-3"><div class="step">
+        <div class="step-icon"><i class="bi bi-clipboard-check"></i></div>
+        <h3>Apply Online</h3>
+        <p>Fill out a short application. Our team reviews it within 24 hours.</p>
+      </div></div>
+      <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center" style="padding-top:32px">
+        <i class="bi bi-arrow-right text-secondary opacity-50 fs-4"></i>
+      </div>
+      <div class="col-md-3"><div class="step">
+        <div class="step-icon"><i class="bi bi-people"></i></div>
+        <h3>Meet & Greet</h3>
+        <p>Schedule a visit to meet your potential companion in person.</p>
+      </div></div>
+      <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center" style="padding-top:32px">
+        <i class="bi bi-arrow-right text-secondary opacity-50 fs-4"></i>
+      </div>
+      <div class="col-md-3"><div class="step">
+        <div class="step-icon"><i class="bi bi-house-heart"></i></div>
+        <h3>Bring Home</h3>
+        <p>Complete the adoption fee and take your new family member home forever.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Can't adopt right now?</h2>
+    <p>Foster a pet and give them a safe, loving temporary home while they wait.</p>
+    <button class="btn-cta-white" onclick="showToast('Thank you for your interest in fostering! We\'ll be in touch soon. 🐾')">Become a Foster Parent</button>
+  </div>
+</section>
+
+<!-- ══ MODAL ══ -->
+<div class="modal fade" id="petModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Pet Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImg" src="" alt="" class="modal-pet-img"/>
+        <div class="d-flex justify-content-between align-items-start mb-1">
+          <div>
+            <h4 id="modalName" style="font-family:'Playfair Display',serif"></h4>
+            <p id="modalMeta" class="text-muted small mb-0"></p>
+          </div>
+          <span id="modalBadge" class="badge"></span>
+        </div>
+        <div class="modal-tags" id="modalTags"></div>
+        <p id="modalDesc" class="mt-2" style="font-size:.92rem;line-height:1.7;color:#555"></p>
+        <button class="btn-apply" onclick="applyNow()"><i class="bi bi-heart me-2"></i>Apply to Adopt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOSTER MODAL ══ -->
+<div class="modal fade" id="fosterModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-house-heart-fill me-2"></i>Become a Foster Parent</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:#555; line-height:1.7;">Fostering gives a pet a safe, loving home while they wait to be adopted, and it's one of the biggest reasons we're able to take in more animals who need us.</p>
+        <ul class="foster-list">
+          <li><i class="bi bi-check-circle-fill"></i> We cover all food, supplies, and vet visits</li>
+          <li><i class="bi bi-check-circle-fill"></i> Fostering can last a weekend or a few months, your choice</li>
+          <li><i class="bi bi-check-circle-fill"></i> Our team is on call for support, day or night</li>
+          <li><i class="bi bi-check-circle-fill"></i> No experience required, just love and patience</li>
+        </ul>
+        <button class="btn-apply" onclick="submitFosterInterest()"><i class="bi bi-house-heart me-2"></i>I'd Like to Foster</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DONATE MODAL ══ -->
+<div class="modal fade" id="donateModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-heart-fill me-2"></i>Support Our Mission</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:#555; line-height:1.7;">Every donation goes straight toward vet care, food, and shelter for pets who are still waiting on their forever home.</p>
+        <div class="donate-amounts" id="donateAmounts">
+          <div class="pill" data-amount="10" onclick="selectDonateAmount(this)">$10</div>
+          <div class="pill" data-amount="25" onclick="selectDonateAmount(this)">$25</div>
+          <div class="pill" data-amount="50" onclick="selectDonateAmount(this)">$50</div>
+          <div class="pill" data-amount="100" onclick="selectDonateAmount(this)">$100</div>
+          <div class="pill" data-amount="custom" onclick="selectDonateAmount(this)">Custom</div>
+        </div>
+        <input type="number" id="customDonateInput" class="form-control d-none mb-3" placeholder="Enter an amount in $" min="1" oninput="handleCustomDonateInput()"/>
+        <button class="btn-apply" id="donateSubmitBtn" disabled onclick="submitDonation()">Select an amount to donate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT MODAL ══ -->
+<div class="modal fade" id="aboutModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-info-circle-fill me-2"></i>About PawsHome</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:#555; line-height:1.7;">PawsHome started as a single garage shelter and has grown into a network of foster homes and adoption counselors with one goal: matching every pet with the family that's right for them.</p>
+        <p style="color:#555; line-height:1.7;">We screen every adopter, support every foster, and never give up on a hard-to-place animal.</p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="num">2,400+</div><div class="lbl">Pets Rehomed</div></div>
+          <div class="about-stat"><div class="num">98%</div><div class="lbl">Happy Homes</div></div>
+          <div class="about-stat"><div class="num">24h</div><div class="lbl">Support</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast-container">
+  <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  Made with <span>♥</span> for animals in need · PawsHome &copy; 2025
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
